@@ -7,7 +7,7 @@
       <th scope="col">Name</th>
       <th scope="col">Address</th>
       <th scope="col">Email</th>
-      <th scope="col">Operation</th>
+      <th *ngIf="isControl" scope="col">Operation</th>
     </tr>
   </thead>
   <tbody>
@@ -16,11 +16,13 @@
       <th>{{item.name}}</th>
       <th>{{item.address}}</th>
       <th>{{item.email}}</th>
-      <th><i (click)="deleteResto(item.id)" class="fa fa-trash" style="font-size:20px;color:red;"></i><br><
+      <th><i *ngIf="isControl" (click)="deleteResto(item.id)" class="fa fa-trash" style="font-size:20px;color:red;"></i><br>
         <a routerLink="/update/{{item.id}}">
-          <i class="fa fa-edit" style="font-size:20px;color:blue;"></i>
+          <i *ngIf="isControl" class="fa fa-edit" style="font-size:20px;color:blue;"></i>
         </a>
       </th>
     </tr>
+    
   </tbody>
 </table>
+<button (click)="check()">Can i Edit</button>

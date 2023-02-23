@@ -5,11 +5,13 @@ import { ListRestoComponent } from './list-resto/list-resto.component';
 import { UpdateRestoComponent } from './update-resto/update-resto.component';
 import { RegisterComponent } from './register/register.component';
 import { LoginComponent } from './login/login.component';
+import { AuthGuard } from './auth.guard';
 
 const routes: Routes = [
   {
     component: AddRestoComponent,
     path: 'add',
+    canActivate:[AuthGuard]
   },
   {
     component: ListRestoComponent,
@@ -20,10 +22,10 @@ const routes: Routes = [
     path: 'update/:id',
    
   },
-  {
-    component: LoginComponent,
-    path: 'login',
-  },
+  // {
+  //   component: LoginComponent,
+  //   path: 'login',
+  // },
   {
     component: RegisterComponent,
     path: 'register',
