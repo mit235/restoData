@@ -1,3 +1,6 @@
+
+
+
 <nav class="navbar navbar-expand-sm navbar-light bg-light">
   <a class="navbar-brand" routerLink="">Resto</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
@@ -14,12 +17,18 @@
 
 
 
-      <a *ngIf="ismenurequired" class="nav-item nav-link" routerLink="add">Add Restaurant</a>
+      <!-- <a *ngIf="ismenurequired" class="nav-item nav-link" routerLink="add">Add Restaurant</a> -->
+      <a *ngIf="isAuthenticated" class="nav-item nav-link" routerLink="add">Add Restaurant</a>
       <a class="nav-item nav-link" routerLink="">List Restaurant</a>
       <a class="nav-item nav-link" routerLink="update">update Restaurant</a>
       <!-- <a class="nav-item nav-link" routerLink="login">Login </a> -->
       <a class="nav-item nav-link" routerLink="register">Login/Register </a>
-
+      <a class="nav-item nav-link" *ngIf="!isAuthenticated" routerLink="auth">Auth</a>
+      <ul class="nav navbar-nav navbar-right">
+        <li *ngIf="isAuthenticated">
+          <a style="cursor: pointer;">Logout</a>
+        </li>
+      </ul>
     </div>
   </div>
 </nav>

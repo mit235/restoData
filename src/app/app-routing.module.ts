@@ -6,12 +6,13 @@ import { UpdateRestoComponent } from './update-resto/update-resto.component';
 import { RegisterComponent } from './register/register.component';
 import { LoginComponent } from './login/login.component';
 import { AuthGuard } from './auth.guard';
+import { AuthComponent } from './auth/auth.component';
 
 const routes: Routes = [
   {
     component: AddRestoComponent,
     path: 'add',
-    canActivate:[AuthGuard]
+    // canActivate:[AuthGuard]
   },
   {
     component: ListRestoComponent,
@@ -30,6 +31,10 @@ const routes: Routes = [
     component: RegisterComponent,
     path: 'register',
   },
+  {
+    component:AuthComponent,
+    path:'auth'
+  }
 ];
 
 @NgModule({

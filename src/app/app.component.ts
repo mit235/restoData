@@ -2,21 +2,43 @@ import {
   Component,
   ViewContainerRef,
   ComponentFactoryResolver,
+  OnInit,
+  OnDestroy,
 } from '@angular/core';
 import { Router } from '@angular/router';
+import { Subscription } from 'rxjs/internal/Subscription';
+import { RestoService } from './resto.service';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css'],
 })
-export class AppComponent {
+export class AppComponent implements OnInit,OnDestroy{
+  isAuthenticated = false;
+  private userSub: Subscription | any;
   title = 'resto';
   constructor(
     private vcr: ViewContainerRef,
     private cfr: ComponentFactoryResolver,
-    private router: Router
+    private router: Router,
+    private restoserv: RestoService
+
   ) {}
+
+
+  ngOnInit() {
+    this.userSub = this.restoserv.user.subscribe(user => {
+      this.isAuthenticated = !!user;
+      console.log(!user);
+      console.log(!!user);
+    });
+  }
+
+  ngOnDestroy() {
+    this.userSub.unsubscribe();
+  }
+
   ismenurequired = false;
   ngDoCheck(): void {
     let currenturl = this.router.url;
